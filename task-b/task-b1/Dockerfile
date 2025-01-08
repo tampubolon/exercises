@@ -8,7 +8,7 @@ WORKDIR /app
 COPY . /app
 
 # Install dependencies (pandas and openpyxl for Excel support)
-RUN pip install --no-cache-dir pandas openpyxl
+RUN pip install --no-cache-dir pandas openpyxl psutil
 
 # Command to run the Python script
-CMD ["python", "column-sum.py"]
+CMD ["python", "py"]
