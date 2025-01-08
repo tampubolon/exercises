@@ -2,12 +2,12 @@ import pandas as pd
 import time
 import subprocess
 from datetime import datetime
+from typing import Dict
 
 # Start measuring time
 start_time = time.time()
 
-def compute_column_sums(input_file):
-
+def compute_column_sums(input_file: str) -> Dict[str, str]:
     # Read the Excel file into a DataFrame
     df = pd.read_excel(input_file)
 
@@ -25,7 +25,7 @@ def compute_column_sums(input_file):
     subprocess.run(['libreoffice', '--headless', '--convert-to', 'xlsx', numeric_file])
 
     # Initialize a dictionary to store the sums
-    column_sums = {}
+    column_sums: Dict[str, str] = {}
 
     # Iterate through all numeric columns to calculate the sum
     for column in numeric_df.columns:
@@ -47,7 +47,6 @@ def compute_column_sums(input_file):
 input_file = "dummy-data.xlsx"  # The Excel input file
 sums = compute_column_sums(input_file)
 
-
 print("===========================================================")
 # Print the results
 print("Columns Sum:")
@@ -60,4 +59,4 @@ execution_time = end_time - start_time
 print("-----------------------------------------------------------")
 # Print the execution time
 print(f"Execution time: {execution_time:.4f} seconds")
-print("===========================================================")   
+print("===========================================================")
