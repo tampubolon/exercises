@@ -1,6 +1,6 @@
 # task b1: Implement the Core IP
 
-
+```bash
 ## Folder Structure
 /app/
 ├── main.py                 # Entry point
@@ -11,3 +11,4 @@
 │ utils/
 │   └── file_utils.py       # Utility functions
 └── results/                # Directory to store output Excel files
+```
