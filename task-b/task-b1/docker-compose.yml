@@ -7,4 +7,4 @@ services:
       - .:/app  # Mount the current directory to /app inside the container
     environment:
       - PYTHONUNBUFFERED=1  # Ensure that the output is not buffered, helpful for logging
-    command: python column-sum-libreoffice.py  # Run the Python script
+    command: main.py
