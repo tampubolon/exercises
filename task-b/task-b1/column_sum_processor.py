@@ -57,7 +57,7 @@ class ColumnSumProcessor:
         self.minio_client.fput_object(self.bucket_name, object_name, file_path)
         print(f"Uploaded {file_path} to MinIO bucket {self.bucket_name} in folder {self.folder_name} as {object_name}")    
 
-    def process(self) -> tuple[Dict[str, str], str]:
+    def process(self) -> Dict[str, str]:
         """Main processing function to compute column sums."""
         # Read the input file
         df = self.read_excel_file()
@@ -77,5 +77,8 @@ class ColumnSumProcessor:
         sum_df = pd.DataFrame(list(column_sums.items()), columns=['Column', 'Sum'])
         self.save_to_excel(sum_df, sum_file)
 
-        # Return both the column sums and the sum file path
-        return column_sums, sum_file
+        # Upload numeric columns file to MinIO
+        minio_file = sum_file  # Pass the correct file path
+        self.upload_to_minio(minio_file)
+
+        return column_sums
