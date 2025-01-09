@@ -1,4 +1,4 @@
-# task b1: Implement the Core IP
+# task-b1: Implement the Core IP
 
 ```bash
 ## Folder Structure

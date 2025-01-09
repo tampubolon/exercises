@@ -9,7 +9,7 @@ if __name__ == "__main__":
     parallel_processor = ParallelColumnProcessor(input_file)
     column_sums = parallel_processor.process()
     
-
+    print("") # print new line
     print("===========================================================")
     print("Column Sums:", column_sums)
 

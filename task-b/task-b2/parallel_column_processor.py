@@ -7,12 +7,13 @@ class ParallelColumnProcessor:
     def __init__(self, input_file: str):
         self.input_file = input_file
         self.column_sum_processor = ColumnSumProcessor(input_file)
+        self.timestamp = self.column_sum_processor.timestamp
 
     def process_single_column(self, column_name: str, df: pd.DataFrame) -> Dict[str, str]:
         """
         Processes a single column using a new instance of ColumnSumProcessor.
         """
-        temp_file = f"temp_{column_name}.xlsx"
+        temp_file = f"columns-sum/temp_{column_name}-{self.timestamp}.xlsx"
         single_column_df = df[[column_name]]
         
         # Save the single column to an Excel file
@@ -56,7 +57,7 @@ class ParallelColumnProcessor:
         column_sums = self.process_columns_in_parallel()
         
         # Save the aggregated results
-        result_file = f"results/sum-numeric-columns-parallel.xlsx"
+        result_file = f"results/sum-numeric-columns-parallel-{self.timestamp}.xlsx"
         result_df = pd.DataFrame(list(column_sums.items()), columns=['Column', 'Sum'])
         self.column_sum_processor.save_to_excel(result_df, result_file)
 
