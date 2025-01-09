@@ -12,7 +12,7 @@ RUN apk update && \
 
 # Activate virtual environment and install Python dependencies
 RUN . /venv/bin/activate && \
-    pip install --no-cache-dir pandas openpyxl
+    pip install --no-cache-dir pandas openpyxl minio python-dotenv
 
 # Copy the entire project into the container
 COPY . /app
