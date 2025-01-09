@@ -19,13 +19,25 @@ if __name__ == "__main__":
     minio_secret_key = os.getenv("MINIO_SECRET_KEY")
     minio_region = os.getenv("MINIO_REGION")
 
-    # Pass the MinIO configuration and other parameters to the processor
-    processor = ColumnSumProcessor(input_file, bucket_name, folder_name, minio_endpoint, minio_access_key, minio_secret_key, minio_region)
-    sums = processor.process()
+    processor = ColumnSumProcessor(
+        input_file = input_file,
+        bucket_name = bucket_name,
+        folder_name= folder_name,
+        minio_endpoint= minio_endpoint,
+        minio_access_key= minio_access_key,
+        minio_secret_key= minio_secret_key,
+        minio_region= minio_region
+    )
+
+    # Process and retrieve the results
+    column_sums, sum_file = processor.process()
+
+    # Upload the sum file to MinIO
+    processor.upload_to_minio(sum_file)
 
     print("===========================================================")
     print("Columns Sum:")
-    print(sums)
+    print(column_sums)
 
     end_time = time.time()
     execution_time = end_time - start_time
