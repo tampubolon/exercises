@@ -1,0 +1,10 @@
+version: '3.8'
+
+services:
+  python-script:
+    build: .
+    volumes:
+      - .:/app  # Mount the current directory to /app inside the container
+    environment:
+      - PYTHONUNBUFFERED=1  # Ensure that the output is not buffered, helpful for logging
+    command: main.py
