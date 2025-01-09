@@ -14,8 +14,11 @@ RUN apk update && \
 RUN . /venv/bin/activate && \
     pip install --no-cache-dir pandas openpyxl
 
-# Copy your Python script to the container
-COPY column-sum-libreoffice.py /app/column-sum-libreoffice.py
+# Copy the entire project into the container
+COPY . /app
+
+# Ensure the working directory is added to PYTHONPATH
+ENV PYTHONPATH=/app
 
 # Set the entrypoint to run your script when the container starts
-ENTRYPOINT ["/venv/bin/python", "/app/column-sum-libreoffice.py"]
+ENTRYPOINT ["/venv/bin/python", "/app/main.py"]
