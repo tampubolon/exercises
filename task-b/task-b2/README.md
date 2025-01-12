@@ -32,6 +32,8 @@ MINIO_SECRET_KEY=minioadmin
 MINIO_REGION=ap-southeast-1
 ```
 Minio web UI is accessible from: http://13.228.17.32:9090
+![image](https://github.com/user-attachments/assets/f4b1b5b3-9277-4086-a6a6-3a7f602ccf85)
+
 
 
 
