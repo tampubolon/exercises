@@ -47,7 +47,7 @@ The main entry point of the application. This script:
 - **Monitoring Thread**: Uses `MonitorResources` to monitor CPU and memory usage in a separate thread.
 - **ColumnSumProcessor**: The main processor class that handles the Excel file, calculates column sums, and uploads the result to MinIO.
 
-### `monitor_resources.py`
+## `monitor_resources.py`
 
 Contains the `MonitorResources` function, which monitors CPU and memory usage in real-time.
 
@@ -57,7 +57,7 @@ Contains the `MonitorResources` function, which monitors CPU and memory usage in
 
 This function continuously prints the CPU and memory usage in a graphical format until the `stop_event` is set.
 
-### `column_sum_processor.py`
+## `column_sum_processor.py`
 
 Contains the `ColumnSumProcessor` class, which processes an input Excel file, calculates the sum of each numeric column, and uploads the result to a MinIO bucket.
 
