@@ -45,16 +45,16 @@ Key architectural decision points:
 - Building on portable components (PostgreSQL, Prometheus, etc.) vs cloudmanaged services
 - Standardizing on VM  container architecture vs cloud-native patterns
 - Designing monitoring, logging, and updates to work without external
-dependencies
+dependencies<br>
 
 
 ## task-b: Coding Exercise: Distributed Compute System
 **task-b1: Implement Core IP**
-![alt text](image.png)
+![alt text](image.png)<br>
 
 **task-b2: Scale the Core IP with distribute compute**
 ![alt text](image-1.png)
-![alt text](image-2.png)
+![alt text](image-2.png)<br>
 
 
 ## Folder Structure
