@@ -68,5 +68,4 @@ __init__(self, input_file: str, bucket_name: str, folder_name: str,
          minio_endpoint: str, minio_access_key: str, minio_secret_key: str, minio_region: str)
 ```
 
-## `column_sum_processor.py`
-`column_sum_processor.py` is the main class in this folder.
+
