@@ -4,6 +4,13 @@ from column_sum_processor import ColumnSumProcessor
 from parallel_column_processor import ParallelColumnProcessor
 from dotenv import load_dotenv
 import os
+import threading
+from monitor_resources import MonitorResources
+
+# Set up monitoring
+stop_event = threading.Event()
+monitor_thread = threading.Thread(target=MonitorResources, args=(stop_event,))  # No need for cpu_usage or mem_usage here
+monitor_thread.start()  # Start monitoring in a separate thread
 
 if __name__ == "__main__":
     start_time = time.time()
@@ -40,3 +47,8 @@ if __name__ == "__main__":
     print("-----------------------------------------------------------")
     print(f"Execution time: {execution_time:.4f} seconds")
     print("===========================================================")
+
+# Stop the monitoring thread
+stop_event.set()
+monitor_thread.join()  # Wait for the monitor thread to finish
+print("\nResource monitoring stopped.")    
