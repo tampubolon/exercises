@@ -12,11 +12,12 @@ monitor_thread = threading.Thread(target=MonitorResources, args=(stop_event,))  
 monitor_thread.start()  # Start monitoring in a separate thread
 
 if __name__ == "__main__":
+    start_time = time.time()
+
     # Load environment variables from .env file
     load_dotenv()
 
     # Record start time
-    start_time = time.time()
 
     input_file = "dummy-data.xlsx"  # The Excel input file
     bucket_name = "distributed-compute"  # The MinIO bucket name
