@@ -49,12 +49,11 @@ dependencies<br>
 
 
 ## task-b: Coding Exercise: Distributed Compute System
-**task-b1: Implement Core IP**
-![alt text](image.png)<br>
+**task-b1: Implement Core IP**<br>
 
-**task-b2: Scale the Core IP with distribute compute**
-![alt text](image-1.png)
-![alt text](image-2.png)<br>
+
+**task-b2: Scale the Core IP with distribute compute**<br>
+
 
 
 ## Folder Structure
