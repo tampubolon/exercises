@@ -55,3 +55,17 @@ dependencies
 **task-b2: Scale the Core IP with distribute compute**
 ![alt text](image-1.png)
 ![alt text](image-2.png)
+
+
+## Folder Structure
+```bash
+/exercises/
+├── task-a/                      
+│     └── README.md              # task-a deliverable
+│  
+├── task-b/   
+│     ├─── task-b1/              # folder containing task-b1 deliverable
+│     │               
+│     └─── task-b2/              # folder containing task-b1 deliverable
+└── README.md                    # Repo README.md
+```

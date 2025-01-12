@@ -1,7 +1,7 @@
 # task-b2: Distributed Compute For the Win!
 
-```bash
 ## Folder Structure
+```bash
 /app/
 ├── main.py                      # Entry point
 ├── column_sum_processor.py      # Contains the ColumnSumProcessor class
