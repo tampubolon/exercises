@@ -65,6 +65,6 @@ dependencies<br>
 ├── task-b/   
 │     ├─── task-b1/              # folder containing task-b1 deliverable
 │     │               
-│     └─── task-b2/              # folder containing task-b1 deliverable
+│     └─── task-b2/              # folder containing task-b2 deliverable
 └── README.md                    # Repo README.md
 ```
