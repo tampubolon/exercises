@@ -63,6 +63,17 @@ This function continuously prints the CPU and memory usage in a graphical format
 
 Contains the `ColumnSumProcessor` class, which processes an input Excel file, calculates the sum of each numeric column, and uploads the result to a MinIO bucket.
 
+
+### ParallelColumnProcessor
+The `parallel_column_processor.py` script is designed to process numeric columns in an Excel file in parallel using multiple processes. It calculates the sum of each numeric column and uploads the results to a MinIO bucket for storage.
+This script is an extension of the `ColumnSumProcessor` class, leveraging parallel processing for improved performance with large datasets.<br>
+Features:
+- Processes numeric columns in an Excel file in parallel using `ProcessPoolExecutor`.
+- Calculates the sum of each numeric column.
+- Saves the results to an Excel file.
+- Uploads the results to a specified MinIO bucket and folder.
+
+
 ##### Constructor:
 ```
 python
