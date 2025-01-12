@@ -64,20 +64,25 @@ This function continuously prints the CPU and memory usage in a graphical format
 Contains the `ColumnSumProcessor` class, which processes an input Excel file, calculates the sum of each numeric column, and uploads the result to a MinIO bucket.
 
 
-### ParallelColumnProcessor
+### `parallel_column_processor.py`
 The `parallel_column_processor.py` script is designed to process numeric columns in an Excel file in parallel using multiple processes. It calculates the sum of each numeric column and uploads the results to a MinIO bucket for storage.
 This script is an extension of the `ColumnSumProcessor` class, leveraging parallel processing for improved performance with large datasets.<br>
 Features:
 - Processes numeric columns in an Excel file in parallel using `ProcessPoolExecutor`.
 - Calculates the sum of each numeric column.
+- Collect and aggregate results back into a final output
 - Saves the results to an Excel file.
-- Uploads the results to a specified MinIO bucket and folder.
+- Uploads the results to a specified MinIO bucket and folder.<br>
+
+**`parallel_column_processor.py` Output**
+- Each numeric column is processed in parallel to calculate its sum.
+- Final output is the aggregate results of each columns sum, and are saved to a file named sum-numeric-columns-parallel-<timestamp>.xlsx.
+- The final output file is uploaded to the specified MinIO bucket and folder.
 
 
 ##### Constructor:
 ```
-python
-__init__(self, input_file: str, bucket_name: str, folder_name: str, 
-         minio_endpoint: str, minio_access_key: str, minio_secret_key: str, minio_region: str)
+ParallelColumnProcessor(input_file: str, bucket_name: str, folder_name: str, 
+                        minio_endpoint: str, minio_access_key: str, minio_secret_key: str, minio_region: str)
 ```
 
