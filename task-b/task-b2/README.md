@@ -19,7 +19,7 @@
 To run this project in your environment, run following command:
 ```
 git clone git@github.com:tampubolon/exercises.git
-cd exercise
+cd exercise/task-b/task-b2
 docker-compose up --build
 ```
 
