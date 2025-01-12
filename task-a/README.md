@@ -262,6 +262,7 @@ For FE, BE and ML, the deployment strategy is the same as deployment startegy in
 **Connectivity Challenges:**
 - Ensure the system operates completely offline when there is no internet connection.
 - Implement a mechanism for data synchronization when the connection is restored.
+- Implement a VPN to secure communcation between cloud infrastructure and on-premise infrastructure.
 
 Add a sync service in `docker-compose.yml` file to handle data exchange with the cloud.
 ```
