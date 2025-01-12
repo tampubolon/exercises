@@ -60,7 +60,7 @@ Contains the `MonitorResources` function, which monitors CPU and memory usage in
 - **bars**: Number of characters used to display the resource usage graph.
 This function continuously prints the CPU and memory usage in a graphical format until the `stop_event` is set.<br>
 **Monitoring CPU and Memory usage with MonitorResources() class:**
-![image](https://github.com/user-attachments/assets/cbd0ff56-3187-444c-b37d-99b855dd4564)
+![image](https://github.com/user-attachments/assets/cbd0ff56-3187-444c-b37d-99b855dd4564)<br>
 
 
 ## `column_sum_processor.py`
