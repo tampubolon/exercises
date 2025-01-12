@@ -1,6 +1,21 @@
 # exercises
 This exercise aims to assess technical skill for a senior infrastructure engineer position.
 
+
+## Folder Structure
+```bash
+/exercises/
+├── task-a/                      
+│     └── README.md              # task-a deliverable
+│  
+├── task-b/   
+│     ├─── task-b1/              # folder containing task-b1 deliverable
+│     │               
+│     └─── task-b2/              # folder containing task-b2 deliverable
+└── README.md                    # Repo README.md
+```
+
+
 ## task-a: Design Exercise: Deployment Strategy for "Uni-Corn LLC"
 **Scenario**
 Your solution needs to support both tech-savvy mega-farms (who want cloud
@@ -55,16 +70,3 @@ dependencies<br>
 **task-b2: Scale the Core IP with distribute compute**<br>
 
 
-
-## Folder Structure
-```bash
-/exercises/
-├── task-a/                      
-│     └── README.md              # task-a deliverable
-│  
-├── task-b/   
-│     ├─── task-b1/              # folder containing task-b1 deliverable
-│     │               
-│     └─── task-b2/              # folder containing task-b2 deliverable
-└── README.md                    # Repo README.md
-```
