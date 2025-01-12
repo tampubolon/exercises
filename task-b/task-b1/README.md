@@ -58,7 +58,7 @@ Contains the `MonitorResources` function, which monitors CPU and memory usage in
 
 This function continuously prints the CPU and memory usage in a graphical format until the `stop_event` is set.<br>
 **Monitoring CPU and Memory usage with MonitorResources() class:**
-![image](https://github.com/user-attachments/assets/b587da07-6cbd-4873-8df9-aa7d6b5cd849)
+![image](https://github.com/user-attachments/assets/b587da07-6cbd-4873-8df9-aa7d6b5cd849)<br>
 
 
 
