@@ -1,17 +1,15 @@
+# main.py
 import time
 from column_sum_processor import ColumnSumProcessor
 from dotenv import load_dotenv
 import os
 import threading
-import psutil
-from typing import Callable
 from monitor_resources import MonitorResources
 
 # Set up monitoring
 stop_event = threading.Event()
-monitor_thread = threading.Thread(target=MonitorResources, args=(stop_event,))
+monitor_thread = threading.Thread(target=MonitorResources, args=(stop_event,))  # No need for cpu_usage or mem_usage here
 monitor_thread.start()  # Start monitoring in a separate thread
-
 
 if __name__ == "__main__":
     # Load environment variables from .env file
@@ -49,8 +47,7 @@ if __name__ == "__main__":
     print(f"Execution time: {execution_time:.4f} seconds")
     print("===========================================================")
 
-
 # Stop the monitoring thread
 stop_event.set()
-monitor_thread.join()
+monitor_thread.join()  # Wait for the monitor thread to finish
 print("\nResource monitoring stopped.")
