@@ -325,7 +325,7 @@ How It Works:
 ![image](https://github.com/user-attachments/assets/3641a612-962d-4769-8820-8829d181eae6)<br>
 
 
-**Hybrid DNS Setup for Failover**
+**Hybrid DNS Setup for Failover**<br>
 Setup a local DNS server to resolve on-premise private IP for failover when internet down in customer site.<br>
 ![image](https://github.com/user-attachments/assets/0e08ddfa-1955-45ca-8b05-078acffe7e79)<br><br>
 
