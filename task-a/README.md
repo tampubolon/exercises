@@ -344,7 +344,7 @@ How It Works:
 - If the on-premise setup is down or unreachable, Route 53 automatically routes users to ECS.
 - Configure health checks for both ECS and the on-premise environment.
 - Example Setup:
-    - Create two DNS records (e.g., `app.unicorn.com`):
+    - Create two DNS records (e.g., `uni-corn.com`):
         - On-premise IP (A/AAAA record or load balancer address).
         - AWS ALB for ECS (A/AAAA record).
     - Use Route 53’s Failover Routing to prefer on-premise when healthy, and ECS as a fallback.
