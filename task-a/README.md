@@ -240,7 +240,6 @@ Based on above considerations, here is how the Cloud environment looks like:
 ![image](https://github.com/user-attachments/assets/2893ec17-4b4e-4d46-8c2d-ede93ffad9f2)
 
 
-- 
 
 **ECS Detailed Technical Implementation**
 - ECS concepts:
@@ -253,7 +252,6 @@ Based on above considerations, here is how the Cloud environment looks like:
 ![Untitled Diagram drawio](https://github.com/user-attachments/assets/6b96e30d-f8a5-4ee1-834e-b7d71088a7eb)<br>
 - Utilize ECS task-definition `revision` feature to roll-out and roll-back application deployment. We can chose `rolling update` or `blue/green` deployment strategy.
 - Utilize Cloudwatch metrics, for example CPU or Memory usage to scale out ECS service (add more tasks) to deal with high demand at peak times, and to scale in ECS service (run fewer tasks) to reduce costs during periods of low utilization.
-  - https://docs.aws.amazon.com/AmazonECS/latest/developerguide/capacity-autoscaling.html
 - Chose EC2 launch type for compute and cost optimization, or chose Fargate (serverless) launch type for more seamless deployment.
 - Use optimized EC2 type for specific application, eg: use CPU optimized EC2 type for CPU intensive application, lets say the BE service; Use Memory optimized EC2 type for Memory intensive application, 
 - Security practices: 
