@@ -255,8 +255,9 @@ Based on above considerations, here is how the Cloud environment looks like:
   * Implement Security Group (SG) to secure ECS on instance level.
   * Implement Network Access Control List (NACL) to secure ECS on network level (VPC and subnet).
   * Implement authentication on application level
-- Automate infrastructure provisioniong (VPC, subnetes, ECS clusters, Security Group, etc.) using Terraform.
-- 
+- Automate infrastructure provisioning like network resources (VPC, subnetes, Security Group, etc.) and ECS cluster & ECS resources using Terraform.
+ * ECS cluster: https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/ecs_cluster
+ * ECS service: https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/ecs_service.html
 
 
 ## 3. Hybrid Deployment
