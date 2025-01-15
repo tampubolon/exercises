@@ -249,7 +249,8 @@ Based on above considerations, here is how the Cloud environment looks like:
   * Service: Responsible for creating task.
 - Create separate task-definition for FE, BE and ML.  
 - Create multi-task services to run containers across multiple Availability Zones to improve availability.
-- Enable Availability Zone(AZ) rebalancing to distribute load evenly accross AZs.
+- Enable Availability Zone (AZ) rebalancing to distribute load evenly accross AZs.
+![Untitled Diagram drawio](https://github.com/user-attachments/assets/6b96e30d-f8a5-4ee1-834e-b7d71088a7eb)<br>
 - Utilize ECS task-definition `revision` feature to roll-out and roll-back application deployment. We can chose `rolling update` or `blue/green` deployment strategy.
 - Utilize Cloudwatch metrics, for example CPU or Memory usage to scale out ECS service (add more tasks) to deal with high demand at peak times, and to scale in ECS service (run fewer tasks) to reduce costs during periods of low utilization.
   - https://docs.aws.amazon.com/AmazonECS/latest/developerguide/capacity-autoscaling.html
