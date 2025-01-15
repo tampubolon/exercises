@@ -232,7 +232,7 @@ Based on above considerations, here is how the Cloud environment looks like:
     - Complicated Backup Solutions: Managing database backups inside ECS requires configuring custom scripts or tools to periodically back up the data, and ensuring that backups are done consistently and safely. With managed services like Amazon RDS, backups, snapshots, and point-in-time recovery are handled automatically, which reduces operational overhead.
     - Security configuration: When running a database in ECS, we'll need to manage IAM roles and permissions for the containers, which increases the risk of misconfigurations. Meanwhile AWS RDS automatically handles IAM integration for database access.
     - Encryption: We’ll have to manually configure encryption at rest and in transit for the database when running in ECS. AWS RDS, on the other hand, provides built-in encryption features and security compliance for databases.
-    - Database Patches and Updates: Keeping the containerized database up-to-date with security patches and updates requires manual intervention and regular maintenance. Amazon RDS handles this for you with minimal downtime through managed patching, making it easier to ensure the database remains secure.
+    - Database Patches and Updates: Keeping the containerized database up-to-date with security patches and updates requires manual intervention and regular maintenance. Amazon RDS handles this for us with minimal downtime through managed patching, making it easier to ensure the database remains secure.
 
 - For monitoring and logging, we will use cloud service, for this case is AWS CloudWatch. Chosing monitoring solution is a thread off between operation overhead and cost. But given the condition of Uni-Corn which required high velocity deployment and managed by skeleton team, I opt to use cloud service for monitoring and logging, so we can direct the team effort to focus more on delivering new features with high velocity and quality deployment.<br>
  
@@ -253,7 +253,9 @@ Based on above considerations, here is how the Cloud environment looks like:
 - Utilize ECS task-definition `revision` feature to roll-out and roll-back application deployment. We can chose `rolling update` or `blue/green` deployment strategy.
 - Utilize Cloudwatch metrics, for example CPU or Memory usage to scale out ECS service (add more tasks) to deal with high demand at peak times, and to scale in ECS service (run fewer tasks) to reduce costs during periods of low utilization.
 - Chose EC2 launch type for compute and cost optimization, or chose Fargate (serverless) launch type for more seamless deployment.
-- Use optimized EC2 type for specific application, eg: use CPU optimized EC2 type for CPU intensive application, lets say the BE service; Use Memory optimized EC2 type for Memory intensive application, 
+- For EC2 launch type, use optimized EC2 instance type for specific application, eg: use CPU optimized EC2 instance type for CPU intensive application; Use Memory optimized EC2 type for memory intensive application.
+- Use public LB for FE service, private LBs for BE and ML services.
+- Create dedicated Auto Scalling Group (ASG) for each components, use specific EC2 instance type for each of components and use at target group for the ASG.
 - Security practices: 
   * Implement Security Group (SG) to secure ECS on instance level.
   * Implement Network Access Control List (NACL) to secure ECS on network level (VPC and subnet).
