@@ -242,7 +242,7 @@ Based on above considerations, here is how the Cloud environment looks like:
 
 - 
 
-**Detail ECS Technical Implementation**
+**ECS Detailed Technical Implementation**
 - ECS concepts:
   * Task: A unit of execution in an ECS cluster that contains one or more containers.
   * Task definition: task blueprint (template):
