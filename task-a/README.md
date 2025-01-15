@@ -36,7 +36,7 @@
 1. FastAPI Backend:
     - Containerized FastAPI app running the corn optimization algorithms.
     - Exposed on a local network port (e.g., http://localhost:8000).
-    - Scalable by increasing the number of backend replicas in `docker-compose.yml`.
+    - Scalable by increasing the number of backend replicas in `docker-compose.yml`[6].
 2. Dashboard Frontend:
     - Containerized Dash app running on a separate container.
     - Communicates with the backend using the local Docker network.
@@ -365,3 +365,4 @@ Setup a local DNS server to resolve on-premise private IP for failover when inte
  * [3] https://docs.aws.amazon.com/AmazonECR/latest/userguide/encryption-at-rest.html
  * [4] https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/Overview.Encryption.html#Overview.Encryption.Enabling
  * [5] https://man7.org/linux/man-pages/man7/capabilities.7.html
+ * [6] https://docs.docker.com/reference/compose-file/deploy/#replicas
