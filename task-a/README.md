@@ -36,7 +36,7 @@
 1. FastAPI Backend:
     - Containerized FastAPI app running the corn optimization algorithms.
     - Exposed on a local network port (e.g., http://localhost:8000).
-    - Scalable by increasing the number of backend replicas in `docker-compose.yml`.
+    - Scalable by increasing the number of backend replicas in `docker-compose.yml`[6].
 2. Dashboard Frontend:
     - Containerized Dash app running on a separate container.
     - Communicates with the backend using the local Docker network.
@@ -168,7 +168,7 @@ Key consideration when design deployment strategy on Cloud environment:
 - Cost effectiveness
 - Technical debt implications: how reversible is this decision?
 
-**Design decission:**
+**Design decision:**
 Based on above considerations, here is how the Cloud environment looks like:
 - First, let's assume the client use their own cloud account to run the workloads, not Uni-Corn LLC account.
 - Let's use AWS cloud provider just for example in this exercise. We can also utilize similar services in other cloud provider as per customer request.
@@ -232,20 +232,48 @@ Based on above considerations, here is how the Cloud environment looks like:
     - Complicated Backup Solutions: Managing database backups inside ECS requires configuring custom scripts or tools to periodically back up the data, and ensuring that backups are done consistently and safely. With managed services like Amazon RDS, backups, snapshots, and point-in-time recovery are handled automatically, which reduces operational overhead.
     - Security configuration: When running a database in ECS, we'll need to manage IAM roles and permissions for the containers, which increases the risk of misconfigurations. Meanwhile AWS RDS automatically handles IAM integration for database access.
     - Encryption: We’ll have to manually configure encryption at rest and in transit for the database when running in ECS. AWS RDS, on the other hand, provides built-in encryption features and security compliance for databases.
-    - Database Patches and Updates: Keeping the containerized database up-to-date with security patches and updates requires manual intervention and regular maintenance. Amazon RDS handles this for you with minimal downtime through managed patching, making it easier to ensure the database remains secure.
+    - Database Patches and Updates: Keeping the containerized database up-to-date with security patches and updates requires manual intervention and regular maintenance. Amazon RDS handles this for us with minimal downtime through managed patching, making it easier to ensure the database remains secure.
 
-- For monitoring and logging, we will use cloud service, for this case is AWS CloudWatch. Chosing monitoring solution is a thread off between operation overhead and cost. But given the condition of Uni-Corn which required high velocity deployment and managed by skeleton team, I opt to use cloud service for monitoring and logging, so we can direct the team effort to focus more on delivering new features with high velocity and quality deployment.<br>
+- For monitoring and logging, we will use cloud service, for this case is AWS CloudWatch. Chosing monitoring solution is a trade off between operation overhead and cost. But given the condition of Uni-Corn which required high velocity deployment and managed by skeleton team, I opt to use cloud service for monitoring and logging, so we can direct the team effort to focus more on delivering new features with high velocity and quality deployment.<br>
  
 **Here is the architecture diagram for deployment strategy on cloud environment:** [Diagram](https://viewer.diagrams.net/?tags=%7B%7D&lightbox=1&target=blank&highlight=0000ff&edit=_blank&layers=1&nav=1&title=CloudDeployment.drawio#R%3Cmxfile%3E%3Cdiagram%20name%3D%22Page-1%22%20id%3D%22lF_7-W5QHEBgdZ2kCPPr%22%3E7V3tl6I2F%2F9rPKf9oIdXxY%2BOOrvbzjyd7my7209zImSUDhIeQB371zeBBCEEBQVlt9g9HbhAyMt9%2Bd2bm9BTp%2Bv3Dz7wVo%2FIgk5Pkaz3njrrKYqi6RL%2BQyj7mCKP9FFMWfq2RWkHwrP9D6RE%2BuByY1swyNwYIuSEtpclmsh1oRlmaMD30S572ytysm%2F1wBLmCM8mcPLUr7YVrmKqwdpF6B%2BhvVyxN8sSvbIG7GZKCFbAQrsUSZ331KmPUBgfrd%2Bn0CG9x%2Folfu6%2B4GpSMR%2B6YakHTHmy2FnfPn181r59sB8%2F6duwL9PR2AJnQ1s8%2BfqMCRPTRBtccFz1cM%2F6w0O2G0Z9qt%2Fhf%2FiVU6mn4ytTcjZQdI7An4%2ByBDl%2FRsrIEvjzUZYg88XL3PtlvoIpQu4sU7zEvV9KVRD%2FU%2B%2FQJnRsF04T7pMwcekDy8ajMkUO8jHNRS7uvbtVuHbwmYwPdys7hM8eMEmv7rDoYNorckPK%2F7LCzmnHk1Ixh4cAv8unZUQjAf35FsYDEt%2FjOMAL7EXylA%2FNjR%2FYW%2FgZBnHhhIp50SPH6%2FclkdsB2AXaYOmjjRdV%2FxN%2Bl%2FDqC6BsgYsIffQGWRN7ijqdKcpQIxW3HYdr%2Bhb6oY2FauLYS1JyiMiLAD1z4GtUIu4P210%2BRGczVaJ9IHqFBYIVtGhj8oJAZYO8Fb6nSFQwPkC0hqG%2Fx7fQq9qYCilVU31Zo4TdQehlid21Skm8MdSptqGaZpmUfhBGfEDlsYJsjnOi2VOGDumpBT5YhlHTYwLpp4ycDv%2B%2FQexCPx74Cb5B1rz3%2BDF6nRU03QQhrraPz8GajI27CLzUCxY%2Bu5NxAL2AWxa%2FPFshTE5VktMheFDCrDwwTjAhYWkBw6xtyyKPCyUHc6ZrHWOHo5rvNJNQplAFLKEIOILdVztDkOfLcgQWJlfIEWYsToQb%2FOXiJ6LR8CH783NUhERGqE96t7%2FGJj2%2Bm3a2gHcSxYSLhEs7iNqa8EFck2ztCDtdpW436I6fYgM6n37%2B%2BUQvHBWS4A2G5orytNDqCi2vyPoKLXDeCmdui%2Byi4A08UUQb5Yly%2FjZmSvNEEU2EG%2FinZcHTMvd0sdXmbA3%2B757IZsacYfp8NiIYT2AAX6Mfb52YJnsAC%2Bg8ocAO7ci4LlCINe5J25hoxJS2PIUUQODFzXq130k9xObehwHa%2BCaMjT0GCoHI7EPTb0SnMsOrZOyuOlIGup5TsyMjr2UZrXYtq%2BYh8eV21yiwu38%2BTS%2BxpB0a%2F0%2Bj8a1nKiJNZEy1%2B%2Fv7RqH4ZHI3ujNKQPF69IQqZwG6PhTqiaEAjo3kxvCYCKHzZnxnrx0Q9XwQAp%2FxVIXOUqt3lp7pK1kAXIeKnu8pfdhUT7EaXMWXmU8J%2FjId7NJEDk157RrTLHsrwqu5BzP3tdHFSfizNOf0OTGTb%2B3yqLKAcY4awZkIAB0bhyQuJ%2FHajEN%2B9%2FfDiQD5Ub2aU%2BKOvQAL8GI6aGMNwAoEL8DzHDziBAC%2BrHDnvYAtsB2wsB073L8E0N%2FaZMybG16ZG15F0wasQ9PKQR6MhyJFmujcS8Z5ulE%2FGr99ePvl94n3ZTL7qqi%2FQxbrSI0qtJaQGVzkhyu0RC5w5gcqJxOHex4QMWnRYP8Nw3BPVS7YhCjLChX7OYbLx5iVdiXW80sYHmkt7VzSxKPD5kMHc8s2G4quX8YqhBUuVs73c%2FI4ZfUbxZB8Ar7AAZUJFAjmFQrQ5CKBF2Cr5gR3qA2yRt0QAiBRgLI53axdkW%2FuzuWbdtj075HlDlaAeeeyPhiN8ohAEnCd1hjXDa%2FIdY8PnbaqzjqaPB7o0uEnZ7hI04xyLNSY4tJE3kgHKs9VFCNjoMvjw8%2B4PcYUD7sI53TDfsmwZ6O3sjYYp3%2FGsA2uxTXtxQMCFr6OGQO4ZsXgA8eJwlhm0zMLgkikOkizmoMb%2BLJgzcuztW7o2EAXBl0b5EYu5iWYvx%2BOBYynNKVs9EK2qwOLdrODGVprZgenY0UXgLAfdXbQt4JGgWRWqNXxOGtgtJyMNzVTKLQsLJp23agV7mR%2F%2F408j2HXkBH%2BigiyoTDC7J2%2BIj7bp8%2BeoG%2FjLogmr86IJ6cDYcdMbjoOdhSIXz8QJh7PDiDWaZKl0UBX0%2BKatdD56NUNwKEsimF1Q37mkCvamAtTCiaQmh3lj%2F98m2%2B%2B%2FLl4Nl%2FHnxF4MT71x331Fnq6bqXKBObk7ALTj23RqiIk3IlYbSIWB1hS4Ta1WZFDi7%2FJyODWOcCEK%2BRY0M8usjjODkaqfZR%2FUpxwEDseyxZl6qQYIxn6iEt8kz6q8JzAxpvH6MPol0f78Q%2FTHQLT74D5tozqyZXHJdHw0D3B9HEpyMcdx9cozrv5EqkY6UAgTWK8%2FQRCzPWkQNyTkoapeMTA3LJD2nAfhSBMB4xTaM%2FHQwfcpQNTEPDORZH7QW%2BPavcELCt%2Bb%2BQyOA7aTdhqGpr%2BRJyj1FvguwdcJnbiPCeI60ifKEqZAosAOZsQTpLBS%2B5MObiXu7PnOIfF%2FqvY0RV5xMIiC91aJeuYNqZUjBJmW9EkdlNahySR%2BwoaBJ9SJVLFjIjieJ0ZOXPEdZmfUFYNaSClf60I3irdVE2d8RQMHiTlexh2UdpXF7T%2FwYL2mqafgWXrieJfiGIVrUOxHYrtUGybUKzKzQGqIwGKlW6JYRXjNJpJR6ags0C7dFAqIuALK%2BTb%2F5AVKA4hulbE1cQ8OCAIbDOrTzATbxP7kw1r4Ucpgxq97AIFIxIGOyQTDX0MESLFQQjxRIOqaPT8MM9ATvapE36WIT1x0UtPW%2FSuO2VxNJnx9JwFZaCT0bUU17HdIjKLLSitdBCOvuGJaJFeKmOfmyTTeWaOm04fO%2FBzvqRxtqBk7w5WUNw1uYIw74F96jaq5gprbGhCKT2IWVzgQeiSPm0iGjXu7Hhnxzs73iY7Ps5HuNsXjhImv3eBiXOhm6Fm54q5xPNbBymEs4raUezWVPYHxWQUQ1FAxq6cB8bULBwbSMNWZJEk%2B32dnPC8WRrJ3Oh%2F%2Fft%2FypfN5lfrRXl763%2FceOJIdWHqX%2BHOJGXDV7nA2OfZ87GlMMWbkQhqd5UKvyISdDux79Ds6Pqeko3i5PW%2FtSyDre5m%2BH6kDjQtpXPzsTaR39LYGnGtzVkabBH%2BaT9yXNaPVG6ltI7Wu4u4fz8R9%2Bo7QyjcAvD8SqymkuSFllK5Is9NZ6dtDNlZ9EaLS9vDxybCChV6DtrnGXekj6dR2vtljFt9%2FxfZyDKuOkycxDTzjkQ%2BodEU0FNPu4DtsWByWQvGWpG2YMektz4DJo4XDvlNK3h1VDbAaTAbxwpiPvyJAOfpIGQ5E6tf08TOYgkuUHkXKrei2rLdm1ll1Hy9DvtmXV610i7LJRW212AJg7bWDiuD76Qfo12Z2lm1o0b73Jr%2BQK5mdXOd8zVFe%2BeK1vzLdSz6F1qr4S1sM4vWseM4vsYid2dF6ySJi9Zp0axLU9E6EWw4hgZO%2Br0sbnF9v%2FfR9TfKX%2BbndR893X1b%2FzIcL772m0g0K9rsM94YmG6gHZCiyMQUJK7wYh89W4d1LltNpQg69HskoHq0Khd3xR8BxJcdCIJo7ta3t7YDlzA%2Bdk3bc8hxFBiUNkG0tTSZz8NcgZwSO7GUsxkXt4L01NzFtSS7w0iP95PqxvgmNfVAEOyQT%2FrTQ45t7ltVz5g3YmF5fv4t4QOHqBb816R71ZcAZdfs3ennmFeJbnNNf%2B9F%2Fjnm2zBSZkGJLfOvygwRoODqGnd0dgLh9nVNM8Svj%2BT%2FBPZKa%2BCCiCHm6Sa8wX3tjNEQhuzw4iGLSc8CxqFgcztVtLudUsfuvkJkIApOcoPE4meRj5gdLXEw7mQMryClJ71%2FRPSyCUskEO7oQOszW4Uh%2BUzShHSEcm9arjywsQP%2BamNU6w9M%2FEbMhCAE%2BA%2BhB6SfAGYuGzh9E%2FlYtu4VzOv3UTl9WTEGnrtsjAl0gZNwLHOu9hFvYj%2FDIr02Rev1xqXzBRkouLNx4xXp45cvT9U8ZoF7QzOpmlIjFVkhm6bVS76MVZ5FRipxgNTkl91ZTtEzWSL49ssZRezDlIn8nsjK5RNxqYOX7PCRchWrunZJjkjvMq9TMLwXxJDFrNGubFqV%2Bw6UYnC6pmysOQl4JKxZLpm2rlizds29WZ82pEJdpPnCCsdW%2B0rTj6VAaHtMSKJxeVNRZFUKTYg0UGQlaze0WnQHq2KyWVW2APT6GsBmZL0tm6eXNA5s%2F9eTxkG9WahQPH9XYi1y1%2FFNZIaJlk01Bcz%2FCEpFlopxd2Zrxkp7CRYkVXA5GNHtsyKvvXW7C%2FLrKgryTrTBJur4I%2FxdZesxiV9Z3E8Q2K2%2BK6aXcBqqfS2oarf0OVDalwX7fCTINZP02VjWp14MVAtFWRh9qwLxKgcqd7QviOZYRJ%2BQvouipeXw8R%2Bu3Z8in7j5Dw%2FTKOa6tX3krmGZ76i2%2FjNDehE2OyKfGT4UbAV43a8MCTL2u69gd9%2Fd%2B96%2Fgl2TsHK5HPJI%2BOmZZJFeRmIbsxui6DwHCXm1y7vGU7IALi3kJcBdKxRuoq6qAKK8ihUZ%2BuZUbPF%2B6DkM3327%2Blbd0X27%2Bofenb77dnWtSpX%2F%2FMnwqh%2BvFi9LL2EXa4z7B6tWx%2F2l2pK3a4QBN8%2FOqMzofe6LTpI60NLf91Ly2EL0IeY65u2Fqaej3Pi0NLW3IkY%2FHdClLa9vmvVKAV2WG9Loh7MvjksoY2MgC3CzaN%2BR5gJk19Ton4jywlLQPq0%2B%2FVS8gPN2tfJsDxI0do6JqXHa9oe3WVr1FShKbn9jgSyLMgr5lI%2F6JLnYBb44Zz%2FHzPH6vzjCLD2HPgjhct9jGb4s9DEXBqJFaKiWMPo5DTki9GXr2bYgemX8lcTWksksJR%2FPGYtC5kkcvdp%2BWD4ig5Jc%2B0B8qkdkkUSQ%2Bb8%3D%3C%2Fdiagram%3E%3C%2Fmxfile%3E):
 ![image](https://github.com/user-attachments/assets/2893ec17-4b4e-4d46-8c2d-ede93ffad9f2)
 
 
 
+**ECS Detailed Technical Implementation**
+- ECS concepts:
+  * Task: A unit of execution in an ECS cluster that contains one or more containers.
+  * Task definition: task blueprint (template):
+  * Service: Responsible for creating task.
+- Create separate task-definition for FE, BE and ML.  
+- Create multi-task services to run containers across multiple Availability Zones to improve availability.
+- Enable Availability Zone (AZ) rebalancing to distribute load evenly accross AZs.
+![Untitled Diagram drawio](https://github.com/user-attachments/assets/6b96e30d-f8a5-4ee1-834e-b7d71088a7eb)<br>
+- Utilize ECS task-definition `revision` feature to roll-out and roll-back application deployment. We can chose `rolling update` or `blue/green` deployment strategy.
+- Utilize Cloudwatch metrics, for example CPU or Memory usage to scale out ECS service (add more tasks) to deal with high demand at peak times, and to scale in ECS service (run fewer tasks) to reduce costs during periods of low utilization.
+- Chose EC2 launch type for compute and cost optimization, or chose Fargate (serverless) launch type for more seamless deployment.
+- For EC2 launch type, use optimized EC2 instance type for specific application, eg: use CPU optimized EC2 instance type for CPU intensive application; Use Memory optimized EC2 type for memory intensive application.
+- Use public LB for FE service, private LBs for BE and ML services.
+- Create dedicated Auto Scalling Group (ASG) for each components, use specific EC2 instance type for each of components and use at target group for the ASG.
+- Security practices: 
+  * Implement Security Group (SG) to secure ECS on instance level.
+  * Implement Network Access Control List (NACL) to secure ECS on network level (VPC and subnet).
+  * Implement authentication on application level
+  * Implement container security best practices:
+    - Run containers as a non-root user
+    - Scan container images for vulnerabilities
+    - Use minimal or distroless images
     
+    - Removing all unnecessary Linux capabilities [5] and shells and utilities like nc and curl that can be used for malicious purposes. 
+    - Create collection of standarized golden images for internal use.
+    - Run static code analysis.
+    - Etc.
 
+- Automate infrastructure provisioning like network resources (VPC, subnetes, Security Group, etc.) and ECS cluster & ECS resources using Terraform.
+  * ECS cluster: https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/ecs_cluster
+  * ECS service: https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/ecs_service.html
 
-
-- 
 
 ## 3. Hybrid Deployment
 This architecture is required for farms with intermittent connectivity.
@@ -316,7 +344,7 @@ How It Works:
 - If the on-premise setup is down or unreachable, Route 53 automatically routes users to ECS.
 - Configure health checks for both ECS and the on-premise environment.
 - Example Setup:
-    - Create two DNS records (e.g., `app.unicorn.com`):
+    - Create two DNS records (e.g., `uni-corn.com`):
         - On-premise IP (A/AAAA record or load balancer address).
         - AWS ALB for ECS (A/AAAA record).
     - Use Route 53’s Failover Routing to prefer on-premise when healthy, and ECS as a fallback.
@@ -336,3 +364,5 @@ Setup a local DNS server to resolve on-premise private IP for failover when inte
  * [2] https://aws.amazon.com/ecs/sla/
  * [3] https://docs.aws.amazon.com/AmazonECR/latest/userguide/encryption-at-rest.html
  * [4] https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/Overview.Encryption.html#Overview.Encryption.Enabling
+ * [5] https://man7.org/linux/man-pages/man7/capabilities.7.html
+ * [6] https://docs.docker.com/reference/compose-file/deploy/#replicas
