@@ -168,7 +168,7 @@ Key consideration when design deployment strategy on Cloud environment:
 - Cost effectiveness
 - Technical debt implications: how reversible is this decision?
 
-**Design decission:**
+**Design decision:**
 Based on above considerations, here is how the Cloud environment looks like:
 - First, let's assume the client use their own cloud account to run the workloads, not Uni-Corn LLC account.
 - Let's use AWS cloud provider just for example in this exercise. We can also utilize similar services in other cloud provider as per customer request.
@@ -240,12 +240,24 @@ Based on above considerations, here is how the Cloud environment looks like:
 ![image](https://github.com/user-attachments/assets/2893ec17-4b4e-4d46-8c2d-ede93ffad9f2)
 
 
-
-    
-
-
-
 - 
+
+**Detail ECS Technical Implementation**
+- ECS concepts:
+  * Task: A unit of execution in an ECS cluster that contains one or more containers.
+  * Task definition: task blueprint (template):
+  * Service: Responsible for creating task.
+- Create separate task-definition for FE, BE and ML.  
+- Create multi-task services to run containers across multiple Availability Zones to improve availability.
+- Utilize ECS task-definition `revision` feature to roll-out and roll-back application deployment. We can chose `rolling update` or `blue/green` deployment strategy.
+- Chose EC2 launch type for compute and cost optimization, or chose Fargate (serverless) launch type for more seamless deployment.
+- Security practices: 
+  * Implement Security Group (SG) to secure ECS on instance level.
+  * Implement Network Access Control List (NACL) to secure ECS on network level (VPC and subnet).
+  * Implement authentication on application level
+- Automate infrastructure provisioniong (VPC, subnetes, ECS clusters, Security Group, etc.) using Terraform.
+- 
+
 
 ## 3. Hybrid Deployment
 This architecture is required for farms with intermittent connectivity.
