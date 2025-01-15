@@ -249,12 +249,26 @@ Based on above considerations, here is how the Cloud environment looks like:
   * Service: Responsible for creating task.
 - Create separate task-definition for FE, BE and ML.  
 - Create multi-task services to run containers across multiple Availability Zones to improve availability.
+- Enable Availability Zone(AZ) rebalancing to distribute load evenly accross AZs.
 - Utilize ECS task-definition `revision` feature to roll-out and roll-back application deployment. We can chose `rolling update` or `blue/green` deployment strategy.
+- Utilize Cloudwatch metrics, for example CPU or Memory usage to scale out ECS service (add more tasks) to deal with high demand at peak times, and to scale in ECS service (run fewer tasks) to reduce costs during periods of low utilization.
+  - https://docs.aws.amazon.com/AmazonECS/latest/developerguide/capacity-autoscaling.html
 - Chose EC2 launch type for compute and cost optimization, or chose Fargate (serverless) launch type for more seamless deployment.
+- Use optimized EC2 type for specific application, eg: use CPU optimized EC2 type for CPU intensive application, lets say the BE service; Use Memory optimized EC2 type for Memory intensive application, 
 - Security practices: 
   * Implement Security Group (SG) to secure ECS on instance level.
   * Implement Network Access Control List (NACL) to secure ECS on network level (VPC and subnet).
   * Implement authentication on application level
+  * Implement container security best practices:
+    - Run containers as a non-root user
+    - Scan container images for vulnerabilities
+    - Use minimal or distroless images
+    
+    - Removing all unnecessary Linux capabilities [5] and shells and utilities like nc and curl that can be used for malicious purposes. 
+    - Create collection of standarized golden images for internal use.
+    - Run static code analysis.
+    - Etc.
+
 - Automate infrastructure provisioning like network resources (VPC, subnetes, Security Group, etc.) and ECS cluster & ECS resources using Terraform.
   * ECS cluster: https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/ecs_cluster
   * ECS service: https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/ecs_service.html
@@ -349,3 +363,4 @@ Setup a local DNS server to resolve on-premise private IP for failover when inte
  * [2] https://aws.amazon.com/ecs/sla/
  * [3] https://docs.aws.amazon.com/AmazonECR/latest/userguide/encryption-at-rest.html
  * [4] https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/Overview.Encryption.html#Overview.Encryption.Enabling
+ * [5] https://man7.org/linux/man-pages/man7/capabilities.7.html
