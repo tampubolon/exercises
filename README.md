@@ -1,5 +1,5 @@
 # exercises
-This exercise aims to assess technical skill for a senior infrastructure engineer position.
+System design and parallel programming skills exercises.
 
 
 ## Folder Structure
