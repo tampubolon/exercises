@@ -6,12 +6,12 @@ System design and parallel programming skills exercises.
 ```bash
 /exercises/
 ├── task-a/                      
-│     └── README.md              # task-a deliverable
+│     └── README.md              # exercise a deliverable
 │  
 ├── task-b/   
-│     ├─── task-b1/              # folder containing task-b1 deliverable
+│     ├─── task-b1/              # folder containing exercise b1 deliverable
 │     │               
-│     └─── task-b2/              # folder containing task-b2 deliverable
+│     └─── task-b2/              # folder containing exercise b2 deliverable
 └── README.md                    # Repo README.md
 ```
 
